@@ -15,13 +15,8 @@ def generateQR():
     data = request.form.get('link')
 
     if data:
-        # Generate QR code
         image = qrcode.make(data)
-
-        # Save it to the memory
         image.save(memory, format='PNG')
-
-        # Reading the data
         memory.seek(0)
         base64_image = "data:image/png;base64," + b64encode(memory.getvalue()).decode('ascii')
     else:
